@@ -14,41 +14,56 @@ rclone_setup_tmp_dir: "/tmp/rclone_setup"
 
 # The location to install the config file if configured
 rclone_config_location: "/root/.config/rclone/rclone.conf"
-rclone_service_account_key: "service_key.json"
+rclone_service_account_key: "dark-berm.json"
 rclone_configs:
-  - name: k8s-Crypt
+  - name: GdriveCrypt
     properties:
       type: drive
-      scope: drive
       service_account_file: "/root/.config/rclone/{{ rclone_service_account_key }}"
-  - name: k8s-Storage
+      team_drive: 0ANBmDbEV0j_4Uk9PVA
+  - name: GdriveMedia
     properties:
       type: crypt
-      remote: k8s-Crypt:k8s
+      remote: GdriveCrypt:media
       filename_encryption: standard
       directory_name_encryption: true
-      password: pw1
-      password2: pw2
+      password: 9p571hrJ7X_sma_ADLjd6Ae2rApuuLb7jUkuLb0sf9xfpD2fonY
+      password2: kATmiirFGF4sznB6R_ACceC6h9vB1y_-OIqYG4h6CtcJI8wzwOY
+  - name: GdriveNextCloud
+    properties:
+      type: crypt
+      remote: GdriveCrypt:media
+      filename_encryption: standard
+      directory_name_encryption: true
+      password: RYgtK1q94Kr78r-BoZAmiNgD7zkB5rDo7OTVjk2FNbd_voNP5lgIuSKaQvjdokQv
+      password2: FJA6FaJ5QNW0ByEHv6dFIOpud_BIENwSdfQRu2dOBrMVGciDMzE
 
 rclone_service:
-  - name: k8s-Storage
+  - name: GdriveMedia
     flags: 
       [--allow-other ,
 --allow-non-empty ,
 # Google Drive is a polling remote so this value can be set very high and any changes are detected via polling.
 --dir-cache-time 1000h ,
-# Allow anyone to write to the remote
---umask 000 ,
 # The log level output
 --log-level INFO ,
 # Location of the log file
 --log-file /var/log/rclone.log ,
 # VFS caching layer settings
---vfs-write-back 300s ,
+--vfs-write-back duration 5m ,
 --vfs-cache-mode full ,
 --vfs-cache-max-size 10G    
      ]
-
+  - name: GdriveNextCloud
+    flags: 
+      [--allow-other ,
+--allow-non-empty ,
+# Google Drive is a polling remote so this value can be set very high and any changes are detected via polling.
+--dir-cache-time 1000h ,
+# The log level output
+--log-level INFO ,
+# Location of the log file
+--log-file /var/log/rclone.log]
 
       
 PACKAGES:

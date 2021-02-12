@@ -1,0 +1,13 @@
+- name: Mount service start
+  service:
+    name: "rclone-mount-{{ item.name }}.service"
+    state: started
+    daemon_reload: yes
+  with_items: "{{ rclone_service }}"
+  notify: Mount service enable
+
+- name: Mount service enable
+  service:
+    name: "rclone-mount-{{ item.name }}.service"
+    enabled: yes
+  with_items: "{{ rclone_service }}"

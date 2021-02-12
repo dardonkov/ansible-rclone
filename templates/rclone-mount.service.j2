@@ -1,0 +1,15 @@
+[Service]
+Type=notify
+
+ExecStart=/usr/local/bin/rclone mount {{ item.name }}: /srv/{{ item.name }} \
+{% for flag in item.flags %}
+{{ flag }} \
+{% endfor %}
+
+ExecStop=/bin/fusermount -uz /srv/{{ item.name }}
+Restart=on-failure
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+- name: Ensure group "k8s" exists with correct gid
+  group:
+    name: k8s
+    state: present
+    gid: 915
+
+- name: Add the user 'k8s' with a specific uid and a primary group of 'k8s'
+  user:
+    name: k8s
+    uid: 915
+    group: k8s
+    create_home: false
+
+
+- name: Create directories for the mounts
+  file:
+    path: /srv/{{ item.name }}
+    state: directory
+    mode: '0775'
+  with_items: "{{ rclone_service }}"
+  
+- name: Create files for mount services
+  template:
+    src: rclone-mount.service.j2
+    dest: "/lib/systemd/system/rclone-mount-{{ item.name }}.service"
+  with_items: "{{ rclone_service }}"
+  notify:
+    - Mount service start

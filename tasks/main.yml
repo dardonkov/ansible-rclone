@@ -66,11 +66,19 @@
     mode: '0700'
   when: rclone_configs is defined
 
+- name: Copy service account file
+  copy:
+    src: "{{ playbook_dir }}/{{ rclone_service_account_key }}"
+    dest: "/root/.config/rclone/{{ rclone_service_account_key }}"
+    mode: '0700'
+  when: rclone_service_account_key is defined
+
+
 - name: Set up rclone config
   template:
     src: rclone.conf.j2
     dest: '{{ rclone_config_location }}'
-    mode: 0644
+    mode: 0600
   when: rclone_configs is defined
 
 - name: Make dir for local manpages
@@ -99,3 +107,7 @@
   become: true
   changed_when: false
   when: install_manpages
+
+- name: Install services for mounts
+  include_tasks: mount_services.yml
+  when: rclone_service is defined

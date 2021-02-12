@@ -104,9 +104,9 @@ To enable ansible-rclone to recreate that config file, you can provide an `rclon
 Note that this should always be encrypted if stored publicly as it gives access to your remotes:
 
 ```
-rclone_configs:
+rclone_config:
   - name: google-drive
-    properties:
+    flags:
       type: drive
       client_id: <CLIENT_ID>
       client_secret: <CLIENT_SECRET>
