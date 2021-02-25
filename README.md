@@ -1,14 +1,7 @@
 # ansible-rclone
 AKA `ansible_rclone` and formerly `rclone`
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stefangweichinger/ansible-rclone/Molecule?label=GitHub%20Workflow%20Molecule)](https://github.com/stefangweichinger/ansible-rclone/actions)
-
-[![GitHub Open Issues](https://img.shields.io/github/issues/stefangweichinger/ansible-rclone.svg)](https://github.com/stefangweichinger/ansible-rclone/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/stefangweichinger/ansible-rclone.svg)](https://github.com/stefangweichinger/ansible-rclone)
-[![GitHub Forks](https://img.shields.io/github/forks/stefangweichinger/ansible-rclone.svg)](https://github.com/stefangweichinger/ansible-rclone)
-
-[![Ansible Role](https://img.shields.io/ansible/role/46861.svg)](https://galaxy.ansible.com/stefangweichinger/ansible_rclone)
-[![Ansible Role Downloads](https://img.shields.io/ansible/role/d/46861.svg)](https://galaxy.ansible.com/stefangweichinger/ansible_rclone)
+## Important - fork of https://github.com/stefangweichinger/ansible-rclone
 
 ## Description
 
@@ -160,3 +153,5 @@ https://github.com/stefangweichinger/ansible-rclone/actions
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stefangweichinger/ansible-rclone/Molecule?label=GitHub%20Workflow%20Molecule)](https://github.com/stefangweichinger/ansible-rclone/actions)
 
 This, like this whole repo, is a work in progress.
+# ansible_rclone
+
